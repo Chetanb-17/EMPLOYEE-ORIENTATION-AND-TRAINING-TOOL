@@ -36,7 +36,9 @@ import backgroundImage from '../../Images/profile-background.jpg';
 import Profile from '../..//Images/ChetanProfile.jpg'
  import Button from '../../components/UI/button';
  import Input from '../../components/UI/input';
+import { useUserContext} from '../../contextApi/loginContext';
  const UserProfileCard: React.FC = () => {
+    const { user } = useUserContext();
     return (
         <div className="z-1 w-full p-4">
             {/* Main Grid: 1 column on small screens, 12 on extra large */}
@@ -61,7 +63,7 @@ import Profile from '../..//Images/ChetanProfile.jpg'
                             alt="profile"
                         />
                         <div className="flex items-center space-x-2 mt-2">
-                            <p className="text-2xl">Chetan B</p>
+                            <p className="text-2xl">Chetan</p>
                             <span className="bg-blue-500 rounded-full p-1" title="Verified">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="text-white h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" />
@@ -81,7 +83,7 @@ import Profile from '../..//Images/ChetanProfile.jpg'
                         <InfoItem label="Birthday:" value="17 Jan, 2000" />
                         <InfoItem label="Joined:" value="08 Aug 2022" />
                         <InfoItem label="Mobile:" value="9844939479" />
-                        <InfoItem label="Email:" value="chetan.biradar@alten.com" />
+                        <InfoItem label="Email:" value={String(user?.email || "N/A")} />
                         <InfoItem label="Location:" value="Bangalore, India" />
                         <InfoItem label="Languages:" value="English, Hindi, Kannada" />
                     </ul>

@@ -1,4 +1,4 @@
- /*
+/*
 *****************************************************************************
 * License Information :Alten Global Technology Solutions Pvt. Ltd.                  *
 
@@ -29,99 +29,48 @@
 *                     
 * Constraint(s)     : None.
 *                     
- ****************************************************************************
-*/ 
+****************************************************************************
+*/
 import React, { useState } from 'react';
 // import Header from '../layout/mainHeader';
- import bgVideo from '../../public/videos/studyBg.mp4';
- import Logo from '../Images/ALTEN logo Black.png';
+import bgVideo from '../../public/videos/studyBg.mp4';
+import Logo from '../Images/ALTEN logo Black.png';
 import Button from '../components/UI/button';
 import Input from '../components/UI/input';
-import Loader from '../components/UI/loader';
-import { useUserContext } from '../contextApi/logiContext';
+// import Loader from '../components/UI/loader';
+import { useUserContext } from '../contextApi/loginContext';
+ import { useNavigate } from 'react-router-dom';
+
 const Login: React.FC = () => {
 
-
-  // const location = useLocation();
-  // const queryParams = new URLSearchParams(location.search);
-  // const sessionError = queryParams.get("sessionError");
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [videoError, setVideoError] = useState(false);
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState(""); 
-  const [isLoading, setIsLoading] = useState(false);
-  const { logIn,  } = useUserContext();
-
-
-
-  
  
+  const { logIn, } = useUserContext();
+  const navigate = useNavigate();
 
-  const fieldValidation = () => {
-    let formIsValid = true;
-    if (email.trim() === "") {
-      formIsValid = false;
-      setEmailError("Please enter Email");
-    } else if (email.length < 1) {
-      formIsValid = false;
-      setEmailError("Email must be at least 1 characters long");
-    } else if (email.length > 100) {
-      formIsValid = false;
-      setEmailError("email cannot exceed 100 characters");
-    } else {
-      setEmailError("");
-    }
 
-    // Password Validation
-    if (password.trim() === "") {
-      formIsValid = false;
-      setPasswordError("Please enter password");
-    } else if (password.length < 3) {
-      formIsValid = false;
-      setPasswordError("Password must be at least 3 characters long");
-    } else if (password.length > 16) {
-      formIsValid = false;
-      setPasswordError("Password cannot exceed 16 characters");
-    } else {
-      setPasswordError("");
-    }
-
-    return formIsValid;
-  };
 
 
 
   
-  const handleLogin =async (e: React.FormEvent) => {
-    console.log("Login error:")
 
-    e.preventDefault();
-    if (fieldValidation()) {
-      try {
-        setIsLoading(true);
-        await logIn(email.trim(), password, "");
-      } catch (error) {
-        setPassword("");
-        console.log("Login error:", error)
-        // if (
-        //   error.message === "Login failed" ||
-        //   error.message === "Login status uncertain"
-        // ) {
-        //   alertTimerHandler();
-        //   setIsLoading(false);
-        // } else {
-        //   serverTimerHandler();
-        //   setIsLoading(false);
-        // }
-      }
-    }
+
+
+  const handleLogin = () => {
+    // e: React.FormEvent) => {
+    console.log("handleLogin")
+
+  
+    
+    logIn(email.trim(), password, "");
     console.log('Email:', email);
     console.log('Password:', password);
 
-    
+    navigate('/dashboard')
   };
-
+ 
   return (
     <>
     
@@ -170,9 +119,6 @@ const Login: React.FC = () => {
 
   {/* Login card */}
   <div className="relative z-10 w-full max-w-md px-4">
-    <div>
-    {isLoading && <Loader />}
-    </div>
     <div className="bg-white backdrop-blur-md shadow-2xl rounded-md p-8 sm:p-10">
       <div className="text-center">
         <h1 className="text-2xl font-extrabold text-blue-700">Welcome Back</h1>
@@ -181,7 +127,7 @@ const Login: React.FC = () => {
         </p>
       </div>
 
-      <form   className="mt-4 space-y-6">
+      <div  className="mt-4 space-y-6">
         <Input
           id="email"
           name="email"
@@ -190,7 +136,6 @@ const Login: React.FC = () => {
           placeholder="Enter your email"
           onChange={(val) => setEmail(val)}
           value={email}
-          errorMsg={emailError}
         />
         <Input
           id="password"
@@ -200,23 +145,23 @@ const Login: React.FC = () => {
           placeholder="Enter your password"
           onChange={(val) => setPassword(val)}
           value={password}
-          errorMsg= {passwordError}
-          
         />
-        
         <Button
           text="Login"
-          onClick={ handleLogin()}
-          type="info"
+          onClick={() => {
+        console.log("Clicked!");
+        handleLogin();
+      }}
+           type="info"
           size="md"
           fullwidth={true}
         />
-      </form>
+      </div>
 
       <p className="mt-6 text-center text-sm text-gray-500">
         Don’t have an account?{' '}
-        <a href="mailto:karuna.dangi@alten.com" className="text-blue-600 hover:underline font-medium">
-          Contact Admin
+        <a href="#" className="text-blue-600 hover:underline font-medium">
+          Sign up
         </a>
       </p>
     </div>
@@ -226,6 +171,8 @@ const Login: React.FC = () => {
     </>
   );
 };
+
+
 
 export default Login;
 

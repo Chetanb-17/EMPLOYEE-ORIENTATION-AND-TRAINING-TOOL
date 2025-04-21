@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 //  import useAuth from "../auth/token";
 import { baseURL } from "../config/config";
 
+
 // Types
 type User = {
   name: string;
@@ -24,15 +25,16 @@ const STORAGE_KEY = "loggedInUser";
 // Create context
 export const userContext = createContext<UserContextType>({
   user: USER,
-  logIn: async () => {},
-  logOut: () => {},
+  logIn: async () => { },
+  logOut: () => { },
   errorMsg: null,
-  setUser: () => {},
+  setUser: () => { },
 });
 
 // Provider
 export function LoginContextProvider({ children }: { children: React.ReactNode }) {
   // const { getToken } = useAuth();
+  console.log("LoginContextProvider");
 
   const [user, setUser] = useState<User>(() => {
     const storedUser = sessionStorage.getItem(STORAGE_KEY);
@@ -47,9 +49,10 @@ export function LoginContextProvider({ children }: { children: React.ReactNode }
 
   async function logIn(email: string, password: string, token: string) {
     const payLoad = { email, password };
+    console.log("email, password ", email, password);
 
     try {
-        
+
       const response = await fetch(baseURL + "login", {
         method: "POST",
         headers: {
@@ -58,9 +61,10 @@ export function LoginContextProvider({ children }: { children: React.ReactNode }
         },
         body: JSON.stringify(payLoad),
       });
+      console.log("response", response);
 
       const responseJson = await response.json();
-
+      console.log("responseJson", responseJson);
       if (!response.ok) throw new Error("Network response was not ok");
 
       if (responseJson.status === 1) {
@@ -69,7 +73,10 @@ export function LoginContextProvider({ children }: { children: React.ReactNode }
         }
 
         setUser(responseJson.user);
-        window.location.replace("/home");
+        window.location.replace("/dashboard");
+          sessionStorage.setItem("token", token);
+          alert(token);
+        
       } else {
         setErrorMsg(responseJson.data);
         throw new Error(responseJson.data || "Login failed");
@@ -80,23 +87,23 @@ export function LoginContextProvider({ children }: { children: React.ReactNode }
     }
   }
 
-   const logOut = async () => {
-//     try {
-//       await fetch({baseURL} + "logout", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${await getToken()}`,
-//         },
-//         body: JSON.stringify({ gid: user.gid }),
-//       });
-//     } catch (error) {
-//       console.log("Logout error:", error);
-//     }
+  const logOut = async () => {
+    try {
+      await fetch({ baseURL } + "logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${await getToken()}`,
+        },
+        body: JSON.stringify({ gid: user.gid }),
+      });
+    } catch (error) {
+      console.log("Logout error:", error);
+    }
 
-//     localStorage.clear();
-//     sessionStorage.clear();
-//     window.location.replace("/");
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.replace("/");
   };
 
   return (

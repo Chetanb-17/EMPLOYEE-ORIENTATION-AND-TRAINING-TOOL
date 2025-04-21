@@ -1,4 +1,4 @@
-  /*
+/*
 *****************************************************************************
 * License Information :Alten Global Technology Solutions Pvt. Ltd.                  *
 
@@ -29,33 +29,33 @@
 *                     
 * Constraint(s)     : None.
 *                     
- ****************************************************************************
+****************************************************************************
 */
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 // import Home from './views/home';
 import Login from './views/login';
 import DefaultLayout from './layout/layout';
-
+import { LoginContextProvider } from './contextApi/loginContext'
 
 
 
 function App() {
   return (
     <BrowserRouter>
-    
-    <Routes>
-      {/* Public routes OUTSIDE layout */}
-      {/* <Route path="/" element={<Home />} /> */}
-      {/* <Route path="/" element={<Home />} /> */}
-      <Route path="/" element={<Login />} />
+      <LoginContextProvider>
+        <Routes>
+          {/* Public routes OUTSIDE layout */}
+          {/* <Route path="/" element={<Home />} /> */}
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/" element={<Login />} />
 
-      {/* Protected routes INSIDE layout */}
-      <Route path="*" element={<DefaultLayout />}>
-         {/* Nested route is lazy-loaded inside the layout */}
-       </Route>
+          {/* Protected routes INSIDE layout */}
+          <Route path="*" element={<DefaultLayout />}>
+            {/* Nested route is lazy-loaded inside the layout */}
+          </Route>
 
-     </Routes>
-   
+        </Routes>
+      </LoginContextProvider>
     </BrowserRouter>
   );
 }

@@ -49,6 +49,7 @@ interface SelectProps {
   required?: boolean;
   errorMsg?: string;
   disabled?: boolean;
+  onChange: (value: { id: number; name: string } | undefined) => void; 
 }
 
 const Select: React.FC<SelectProps> = ({ options, selectType = 'single', placeholder = 'Select Value', value, label, required, errorMsg, disabled }) => {
