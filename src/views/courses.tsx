@@ -6,13 +6,15 @@ import Button from "../components/UI/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Textarea from "../components/UI/textArea";
 import Divider from "../components/UI/divider";
+import { useNavigate } from 'react-router-dom';
 import {
-  faVideo, faFileAlt, faUsers, faShare, faCheckDouble, faUserCircle, faMessage, faThumbsUp, faClock,faUser,
+  faVideo, faFileAlt, faUsers, faShare, faCheckDouble, faUserCircle, faMessage, faThumbsUp, faClock,faUser,faArrowLeft ,
   faCalendarAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import Card from "../components/UI/card";
 import Mern from '../Images/Mern.jpg'
 const VideoPage: React.FC = () => {
+const navigate = useNavigate();
 
   const tabs = [
     {
@@ -171,11 +173,21 @@ const VideoPage: React.FC = () => {
   ];
   return (
     < >
-    <div className="mb-2 ml-3">
-  {/* Title */}
-  <h1 className="text-2xl md:text-2xl font-serif font-semibold text-gray-600 mb-2">
-   The MERN Fullstack Guide
-  </h1>
+  <div className="mb-2 ml-3">
+  {/* Title + Back Button */}
+  <div className="flex items-center justify-between mb-2">
+    <h1 className="text-2xl md:text-2xl font-serif font-semibold text-gray-600">
+      The MERN Fullstack Guide
+    </h1>
+   <div
+  className="flex items-center gap-2 text-sm text-blue-600 hover:bg-blue-500 hover:px-3 py-1.5 rounded-md hover:text-white cursor-pointer"
+  onClick={() => navigate('/dashboard')}
+>
+  <FontAwesomeIcon icon={faArrowLeft} className="w-4 h-4" />
+  Back to Courses
+</div>
+
+  </div>
 
   {/* Metadata */}
   <div className="flex flex-wrap gap-x-6 gap-y-3 text-base text-gray-600">
@@ -203,7 +215,8 @@ const VideoPage: React.FC = () => {
       <span>Video</span>
     </div>
   </div>
-  </div>
+</div>
+
 
       <div className="h-[calc(100vh-12rem)]">
         <Tab tabs={tabs} />

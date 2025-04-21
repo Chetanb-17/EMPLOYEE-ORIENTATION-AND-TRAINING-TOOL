@@ -74,42 +74,42 @@ import Card from '../components/UI/card';
         image="https://cdn-icons-png.flaticon.com/512/5968/5968381.png"
         content="Learn TypeScript from the ground up and finish the course as an advanced React developer"
         buttonText="Learn More"
-        buttonLink="/details"
+        buttonLink="/courses"
 />
  <ProCard
         title="JavaScript"
          image="https://cdn-icons-png.flaticon.com/512/5968/5968292.png"
         content="Learn JavaScript from the ground up and finish the course as an advanced React developer"
         buttonText="Learn More"
-        buttonLink="/details"
+        buttonLink="/courses"
 />
 <ProCard
         title="React JS"
          image="https://cdn-icons-png.flaticon.com/512/1126/1126012.png"
         content="Learn React js from the ground up and finish the course as an advanced React developer."
         buttonText="Learn More"
-        buttonLink="/details"
+        buttonLink="/courses"
 />
  <ProCard
         title="HTML"
          image="https://cdn-icons-png.flaticon.com/512/5968/5968267.png"
         content="Learn HTML from the ground up and finish the course as an advanced React developer"
         buttonText="Learn More"
-        buttonLink="/details"
+        buttonLink="/courses"
 />
 <ProCard
         title="CSS"
          image="https://cdn-icons-png.flaticon.com/512/5968/5968242.png"
         content="Learn CSS from the ground up and finish the course as an advanced React developer"
         buttonText="Learn More"
-        buttonLink="/details"
+        buttonLink="/courses"
 />
 <ProCard
         title="Redux"
          image="https://cdn-icons-png.flaticon.com/512/1126/1126012.png"
         content="Learn Redux from the ground up and finish the course as an advanced React developer"
         buttonText="Learn More"
-        buttonLink="/details"
+        buttonLink="/courses"
 />
 
       </div>
