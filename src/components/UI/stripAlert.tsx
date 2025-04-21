@@ -48,7 +48,7 @@ type StripAlertProps = {
   linkText?: string;
   linkUrl?: string;
   onClose: () => void;
-  type?: 'error' | 'success' | 'warning' | 'info';
+  type?: 'error' | 'success' | 'warning' | 'info'| 'submit';
   customBgColor?: string;
   customTextColor?: string;
 };
@@ -59,6 +59,7 @@ const typeStyles: Record<string, { bg: string; text: string; icon: IconDefinitio
   success: { bg: 'bg-green-600', text: 'text-white', icon: faCheckCircle },
   warning: { bg: 'bg-yellow-400', text: 'text-black', icon: faExclamationTriangle },
   info: { bg: 'bg-blue-500', text: 'text-white', icon: faInfoCircle },
+  submit: { bg: 'bg-blue-500', text: 'text-white', icon: faInfoCircle },
 };
 
 const StripAlert: React.FC<StripAlertProps> = ({

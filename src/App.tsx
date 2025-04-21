@@ -35,9 +35,14 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 // import Home from './views/home';
 import Login from './views/login';
 import DefaultLayout from './layout/layout';
+
+
+
+
 function App() {
   return (
     <BrowserRouter>
+    
     <Routes>
       {/* Public routes OUTSIDE layout */}
       {/* <Route path="/" element={<Home />} /> */}
@@ -50,6 +55,7 @@ function App() {
        </Route>
 
      </Routes>
+   
     </BrowserRouter>
   );
 }
