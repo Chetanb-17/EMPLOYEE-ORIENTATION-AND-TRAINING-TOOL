@@ -39,7 +39,7 @@ import Button from '../components/UI/button';
 import Input from '../components/UI/input';
 // import Loader from '../components/UI/loader';
 import { useUserContext } from '../contextApi/loginContext';
- import { useNavigate } from 'react-router-dom';
+ 
 
 const Login: React.FC = () => {
 
@@ -48,8 +48,6 @@ const Login: React.FC = () => {
   const [videoError, setVideoError] = useState(false);
  
   const { logIn, } = useUserContext();
-  const navigate = useNavigate();
-
 
 
 
@@ -68,7 +66,7 @@ const Login: React.FC = () => {
     console.log('Email:', email);
     console.log('Password:', password);
 
-    navigate('/dashboard')
+    // navigate('/dashboard')
   };
  
   return (

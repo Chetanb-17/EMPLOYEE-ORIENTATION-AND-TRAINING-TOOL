@@ -75,7 +75,7 @@ export function LoginContextProvider({ children }: { children: React.ReactNode }
         setUser(responseJson.user);
         window.location.replace("/dashboard");
           sessionStorage.setItem("token", token);
-          alert(token);
+        
         
       } else {
         setErrorMsg(responseJson.data);

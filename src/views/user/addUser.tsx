@@ -404,7 +404,8 @@ function AddUser() {
       email: email.trim(),
       userName: userName.trim(),
       roleType: roleType?.name || '',
-      createdBy: user?.userName
+      createdBy: user?.userName,
+      token: user?.token
     };
     console.log("payload", payload);
     
