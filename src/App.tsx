@@ -42,12 +42,12 @@ import { LoginContextProvider } from './contextApi/loginContext'
 function App() {
   return (
     <BrowserRouter>
-      <LoginContextProvider>
+      {/* <LoginContextProvider> */}
         <Routes>
           {/* Public routes OUTSIDE layout */}
           {/* <Route path="/" element={<Home />} /> */}
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/" element={<Login />} />
+          {/* <Route path="/" element={<Login />} /> */}
 
           {/* Protected routes INSIDE layout */}
           <Route path="*" element={<DefaultLayout />}>
@@ -55,7 +55,7 @@ function App() {
           </Route>
 
         </Routes>
-      </LoginContextProvider>
+      {/* </LoginContextProvider> */}
     </BrowserRouter>
   );
 }

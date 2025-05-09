@@ -1,77 +1,43 @@
- /*
-*****************************************************************************
-* License Information :Alten Global Technology Solutions Pvt. Ltd.                  *
+import React from 'react';
 
-*                      #72 & 73, Krishna Reddy Colony, Domlur layout,            *
+interface InputProps {
+    id: string;
+    label: string;
+    type: string;
+    placeholder: string;
+    value: string;
+    onChange: (value: string) => void;
+    className?: string;
+}
 
-*                      Domlur,Bangalore - 560071, INDIA                     *
+const Input: React.FC<InputProps> = ({
+    id,
+    label,
+    type,
+    placeholder,
+    value,
+    onChange,
+    className = ''
+}) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onChange(e.target.value);
+    };
 
-*                      Licensed software and All rights reserved.           *
-
-*****************************************************************************
-
-* File             : input.tsx
-*
-* Description      : Input Component
-*
-* Author(s)        : Chetan Biradar
-*
-* Version History:
-* <Version Number>                 <Author>                <date>        <defect Number>      <Modification
-*                                                                                           made and the
-*                                                                                           reason for
-*                                                                                           modification >
-*  1.0                            Chetan Biradar          14-04-2025         --              initial version
-*
-* References        :
-*                     
-* Assumption(s)     : None.
-*                     
-* Constraint(s)     : None.
-*                     
- ****************************************************************************
-*/
-
-type InputProps = {
-  id: string;
-  name: string;
-  label: string;
-  placeholder?: string;
-  type?: string;
-  className?: string;
-  required?: boolean;
-  value?: string;
-  errorMsg?: string;
-  onChange?: (value: string) => void;
-  disabled?: boolean;
-};
-
-const Input: React.FC<InputProps> = ({ id, name, label, placeholder, type = 'text', className, required = false, value = '', errorMsg, onChange, disabled = false }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e.target.value);
-  };
-
-  return (
-    <div>
-      <label htmlFor={id} className="block text-sm/6 font-medium text-gray-900 font-serif">
-        {label}
-        {required && <span className="text-red-500"> *</span>}
-      </label>
-      <div className="mt-1">
-        <input
-          id={id}
-          name={name}
-          type={type}
-          placeholder={placeholder}
-          value={value}
-          onChange={handleChange}
-          className={`font-serif block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-400 -outline-offset-1 ${errorMsg ? 'outline-red-500 focus:outline-red-500' : 'outline-gray-300 focus:outline-indigo-600'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 sm:text-sm/6 ${className}`}
-          disabled={disabled}
-        />
-        {errorMsg && <p className="mt-1 text-sm text-red-500 font-serif">{errorMsg}</p>}
-      </div>
-    </div>
-  );
+    return (
+        <div className={`mb-4 ${className}`}>
+            <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
+                {label}
+            </label>
+            <input
+                id={id}
+                type={type}
+                placeholder={placeholder}
+                value={value}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+        </div>
+    );
 };
 
 export default Input;

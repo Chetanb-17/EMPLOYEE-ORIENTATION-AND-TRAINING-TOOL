@@ -33,7 +33,7 @@
 */
 import React, { useState } from 'react';
 // import Header from '../layout/mainHeader';
-import bgVideo from '../../public/videos/studyBg.mp4';
+// import bgVideo from '../../public/videos/studyBg.mp4';
 import Logo from '../Images/ALTEN logo Black.png';
 import Button from '../components/UI/button';
 import Input from '../components/UI/input';
@@ -103,8 +103,7 @@ const Login: React.FC = () => {
       playsInline
       onError={() => setVideoError(true)}
     >
-      <source src={bgVideo} type="video/mp4" />
-      Your browser does not support the video tag.
+     
     </video>
   ) : (
     <img
